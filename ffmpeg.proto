@@ -9,10 +9,16 @@ package FfmpegPck;
 
 service Ffmpeg{
  //Init
- rpc Init(Empty)returns(Empty){}
+ rpc Init(Empty)returns(ErrCode){}
 }
 
 //Empty Message
 message Empty{
 	
+}
+
+//Errcode
+
+message ErrCode{
+	int32 err = 1;
 }
