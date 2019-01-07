@@ -8,8 +8,18 @@ option objc_class_prefix = "FF";
 package FfmpegPck;
 
 service Ffmpeg{
- //Init
- rpc Init(Empty)returns(ErrCode){}
+	
+	//Init
+	rpc Init(Empty)returns(ErrCode){}	
+	
+	//Uinit
+	rpc UnInit(Empty)returns(ErrCode){}
+	
+	//openinput
+	rpc OpenInput(InputParam)returns(ErrCode){}
+	
+	//openOutput
+	rpc OpenOutput(OutputParam)returns(ErrCode){}
 }
 
 //Empty Message
@@ -18,7 +28,21 @@ message Empty{
 }
 
 //Errcode
-
 message ErrCode{
 	int32 err = 1;
+}
+
+//openinput params
+message InputParam{
+	string inputUrl = 1;  // source url,eg..IPC 
+	string protocol = 2;  // tcp,udp ...
+	int32 timeout = 3;    // timeout ,micro second 
+	int32 maxDelay = 4;   //  max delay micro second
+	string codec = 5;     // codec type, copy.h264.mp4
+}
+
+//output params 
+message OutputParam{
+	string outputUrl = 1; //output url
+	string formatName = 2; // formatName ,flv,mp4....
 }
